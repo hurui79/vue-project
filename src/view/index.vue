@@ -26,7 +26,13 @@ export default {
             var url='http://192.168.12.69:2029/api/V1/VCard/GetApiData/?CardID=1';
             self.$http.getApi(url)
             .then(function(response){
-                console.log(response)
+                if(response.data && response.data.ResultCode == "200"){
+                    console.log(response)
+                }
+                else{
+                    self.$message.error(response.statusText);
+                }
+                
             }).catch(function(err){
                 console.log(err)
             })
