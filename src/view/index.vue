@@ -26,20 +26,15 @@ export default {
             var url='http://192.168.12.69:2029/api/V1/VCard/GetApiData/?CardID=1';
             self.$http.getApi(url)
             .then(function(response){
-                if(response.data.ResultCode){
-                    if(response.data.ResultCode != "200"){
-                        alert(response);
-                    }
-                    else{
-                        console.log(response);
-                    }
-                }else{
-                    if(response.headers.statuscode){//架构组 返回错误信息
-                        alert(response.statusText);
-                    }
+                if(response.data && response.data.ResultCode == "200"){
+                    console.log(response)
+                }
+                else{
+                    self.$message.error(response.statusText);
                 }
                 
             }).catch(function(err){
+                self.$message.error(response.statusText);
                 console.log(err)
             })
         },
@@ -49,8 +44,14 @@ export default {
             var url='http://192.168.12.69:2029/api/V1/VCard/GetData/?CardID=1';
             self.$http.get(url)
             .then(function(response){
-                console.log(response)
+                if(response.data && response.data.ResultCode == "200"){
+                    console.log(response)
+                }
+                else{
+                    self.$message.error(response.statusText);
+                }
             }).catch(function(err){
+                self.$message.error(response.statusText);
                 console.log(err)
             })
         },
@@ -59,8 +60,14 @@ export default {
             let data = { CardID:3 };
             self.$http.postApi('http://192.168.12.69:2029/api/V1/VCard/PostApiData',data)
             .then(function(response){
-                console.log(response)
+                if(response.data && response.data.ResultCode == "200"){
+                    console.log(response)
+                }
+                else{
+                    self.$message.error(response.statusText);
+                }
             }).catch(function(err){
+                self.$message.error(response.statusText);
                 console.log(err)
             })
         },
@@ -69,8 +76,14 @@ export default {
             let data = { CardID:3 };
             self.$http.post('http://192.168.12.69:2029/api/V1/VCard/PostData',data)
             .then(function(response){
-                console.log(response)
+                if(response.data && response.data.ResultCode == "200"){
+                    console.log(response)
+                }
+                else{
+                    self.$message.error(response.statusText);
+                }
             }).catch(function(err){
+                self.$message.error(response.statusText);
                 console.log(err)
             })
         },
